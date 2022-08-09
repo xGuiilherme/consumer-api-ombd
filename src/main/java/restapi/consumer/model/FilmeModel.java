@@ -1,20 +1,52 @@
 package restapi.consumer.model;
 
-import lombok.Data;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Data
 @Entity
 public class FilmeModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "titulo")
+    private String title;
+    @Column(name = "ano")
+    private String year;
+    @Column(name = "genero")
+    private String genre;
 
-    private String titulo;
+    public FilmeModel() {
+    }
 
-    private String ano;
+    public Long getId() {
+        return id;
+    }
 
-    private String genero;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }

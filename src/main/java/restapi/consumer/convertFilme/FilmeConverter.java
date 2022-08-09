@@ -10,17 +10,17 @@ public class FilmeConverter {
 
     public FilmeModel converteParaFilme(FilmeDTO filmeDTO) {
         var filmeModel = new FilmeModel();
-        filmeModel.setTitulo(filmeDTO.getTitle());
-        filmeModel.setAno(filmeDTO.getYear());
-        filmeModel.setGenero(filmeDTO.getGenre());
+        filmeModel.setTitle(filmeDTO.getTitle());
+        filmeModel.setYear(filmeDTO.getYear());
+        filmeModel.setGenre(filmeDTO.getGenre());
         return filmeModel;
     }
 
     public FilmeVO converteParaFilmeVO(FilmeModel filmeModel) {
         var filmeVO = new FilmeVO();
-        filmeVO.setTitle(filmeModel.getTitulo());
-        filmeVO.setYear(filmeModel.getAno());
-        filmeVO.setGenre(filmeModel.getGenero());
+        filmeVO.setTitle(filmeModel.getTitle());
+        filmeVO.setYear(filmeModel.getYear());
+        filmeVO.setGenre(filmeModel.getGenre());
         return filmeVO;
     }
 }

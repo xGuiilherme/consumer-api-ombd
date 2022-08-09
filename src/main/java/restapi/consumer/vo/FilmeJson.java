@@ -1,26 +1,21 @@
 package restapi.consumer.vo;
 
-import org.springframework.hateoas.RepresentationModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FilmeVO extends RepresentationModel<FilmeVO> {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class FilmeJson {
 
-    private Long id;
-
+    @JsonProperty("Title")
     private String title;
 
+    @JsonProperty("Year")
     private String year;
 
+    @JsonProperty("Genre")
     private String genre;
 
-    public FilmeVO() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public FilmeJson() {
     }
 
     public String getTitle() {

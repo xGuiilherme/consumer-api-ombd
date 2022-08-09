@@ -5,28 +5,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import restapi.consumer.convertFilme.FilmeConverter;
-import restapi.consumer.mapJson.FilmeJson;
 import restapi.consumer.dto.FilmeDTO;
 import restapi.consumer.service.FilmeService;
+import restapi.consumer.vo.FilmeJson;
 import restapi.consumer.vo.FilmeVO;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(value = "api/filme")
+@RequestMapping(value = "/filme")
 public class FilmeController {
 
     @Autowired
-    private FilmeService filmeService;
+    FilmeService filmeService;
 
     @Autowired
-    private FilmeVO filmeVO;
-    @Autowired
-    private FilmeConverter filmeConverter;
+    FilmeConverter filmeConverter;
 
-    @GetMapping("/{tema}")
+    @GetMapping(path = "/omdb/{tema}")
     public ResponseEntity<FilmeJson> getFilme(@PathVariable String tema) {
         try {
             FilmeJson filmeJson = filmeService.getFilme(tema);
@@ -38,13 +36,27 @@ public class FilmeController {
     }
 
     @PostMapping
-    public ResponseEntity<FilmeVO> salveFilme(@RequestBody FilmeDTO filmeDTO) {
+    public ResponseEntity<FilmeVO> savedFilme(@RequestBody FilmeDTO filmeDTO) {
         try {
             FilmeVO filmeVO = filmeConverter.converteParaFilmeVO(filmeService.save(filmeDTO));
 
             addHateaos(filmeVO);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(filmeVO);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<FilmeVO> getById(@PathVariable long id) {
+        try {
+            FilmeVO filmeVO = filmeConverter.converteParaFilmeVO(filmeService.getById(id));
+            return ResponseEntity.ok(filmeVO);
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
