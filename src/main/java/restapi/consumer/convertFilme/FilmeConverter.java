@@ -2,7 +2,7 @@ package restapi.consumer.convertFilme;
 
 import org.springframework.stereotype.Component;
 import restapi.consumer.dto.FilmeDTO;
-import restapi.consumer.model.FilmeModel;
+import restapi.consumer.entities.FilmeModel;
 import restapi.consumer.vo.FilmeVO;
 
 @Component
