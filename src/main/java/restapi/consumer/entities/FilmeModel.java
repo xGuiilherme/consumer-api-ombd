@@ -2,67 +2,62 @@ package restapi.consumer.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "filmes")
-public class FilmeModel implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class FilmeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(nullable = false, length = 50)
+    private String titulo;
 
-    @Column(name = "year")
-    private String year;
+    @Column(nullable = false, length = 5)
+    private String ano;
 
-    @Column(name = "rated")
-    private String rated;
+    @Column(nullable = false, length = 10)
+    private String classificado;
 
-    @Column(name = "released")
-    private String released;
+    @Column(nullable = false, length = 12)
+    private String lancado;
 
-    @Column(name = "runtime")
-    private String runtime;
+    @Column(nullable = false, length = 8)
+    private String tempoDeExecucao;
 
-    @Column(name = "genre")
-    private String genre;
+    @Column(nullable = false, length = 50)
+    private String genero;
 
-    @Column(name = "director")
-    private String director;
+    @Column(nullable = false, length = 50)
+    private String diretor;
 
-    @Column(name = "writer")
-    private String writer;
+    @Column(nullable = false, length = 50)
+    private String escritor;
 
-    @Column(name = "actors")
-    private String actors;
+    @Column(nullable = false, length = 100)
+    private String atores;
 
-    @Column(name = "plot")
-    private String plot;
+    @Column(nullable = false, length = 254)
+    private String trama;
 
-    @Column(name = "language")
-    private String language;
+    @Column(nullable = false, length = 50)
+    private String idioma;
 
-    @Column(name = "country")
-    private String country;
+    @Column(nullable = false, length = 50)
+    private String pais;
 
-    @Column(name = "awards")
-    private String awards;
+    @Column(nullable = false, length = 100)
+    private String premios;
 
-    @Column(name = "poster")
-    private String poster;
-
-    public FilmeModel() {
-        super();
-    }
+    @Column(nullable = false, length = 254)
+    private String posters;
 }
