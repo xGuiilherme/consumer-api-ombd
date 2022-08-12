@@ -1,16 +1,16 @@
 package restapi.consumer.vo;
 
-import lombok.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class FilmeVO extends RepresentationModel<FilmeVO> {
 
     private Long id;
     private String title;
-    private String year;
+    private String years;
     private String rated;
     private String released;
     private String runtime;

@@ -2,47 +2,47 @@ package restapi.consumer.convertFilme;
 
 import org.springframework.stereotype.Component;
 import restapi.consumer.dto.FilmeDTO;
-import restapi.consumer.entities.FilmeModel;
+import restapi.consumer.entities.Filme;
 import restapi.consumer.vo.FilmeVO;
 
 @Component
 public class FilmeConverter {
 
-    public FilmeModel converteParaFilme(FilmeDTO filmeDTO) {
-        var filmeModel = new FilmeModel();
-        filmeModel.setTitulo(filmeDTO.getTitle());
-        filmeModel.setAno(filmeDTO.getYear());
-        filmeModel.setClassificado(filmeDTO.getRated());
-        filmeModel.setLancado(filmeDTO.getReleased());
-        filmeModel.setTempoDeExecucao(filmeDTO.getRuntime());
-        filmeModel.setGenero(filmeDTO.getGenre());
-        filmeModel.setDiretor(filmeDTO.getDirector());
-        filmeModel.setEscritor(filmeDTO.getWriter());
-        filmeModel.setAtores(filmeDTO.getActors());
-        filmeModel.setTrama(filmeDTO.getPlot());
-        filmeModel.setIdioma(filmeDTO.getLanguage());
-        filmeModel.setPais(filmeDTO.getCountry());
-        filmeModel.setPremios(filmeDTO.getAwards());
-        filmeModel.setPosters(filmeDTO.getPoster());
-        return filmeModel;
+    public Filme converteParaFilme(FilmeDTO filmeDTO) {
+        var filme = new Filme();
+        filme.setTitle(filmeDTO.getTitle());
+        filme.setYears(filmeDTO.getYear());
+        filme.setRated(filmeDTO.getRated());
+        filme.setReleased(filmeDTO.getReleased());
+        filme.setRuntime(filmeDTO.getRuntime());
+        filme.setGenre(filmeDTO.getGenre());
+        filme.setDirector(filmeDTO.getDirector());
+        filme.setWriter(filmeDTO.getWriter());
+        filme.setActors(filmeDTO.getActors());
+        filme.setPlot(filmeDTO.getPlot());
+        filme.setLanguage(filmeDTO.getLanguage());
+        filme.setCountry(filmeDTO.getCountry());
+        filme.setAwards(filmeDTO.getAwards());
+        filme.setPoster(filmeDTO.getPoster());
+        return filme;
     }
 
-    public FilmeVO converteParaFilmeVO(FilmeModel filmeModel) {
+    public FilmeVO converteParaFilmeVO(Filme filme) {
         var filmeVO = new FilmeVO();
-        filmeVO.setTitle(filmeModel.getTitulo());
-        filmeVO.setYear(filmeModel.getAno());
-        filmeVO.setRated(filmeModel.getClassificado());
-        filmeVO.setReleased(filmeModel.getLancado());
-        filmeVO.setRuntime(filmeModel.getTempoDeExecucao());
-        filmeVO.setGenre(filmeModel.getGenero());
-        filmeVO.setDirector(filmeModel.getDiretor());
-        filmeVO.setWriter(filmeModel.getEscritor());
-        filmeVO.setActors(filmeModel.getAtores());
-        filmeVO.setPlot(filmeModel.getTrama());
-        filmeVO.setLanguage(filmeModel.getIdioma());
-        filmeVO.setCountry(filmeModel.getPais());
-        filmeVO.setAwards(filmeModel.getPremios());
-        filmeVO.setPoster(filmeModel.getPosters());
+        filmeVO.setTitle(filme.getTitle());
+        filmeVO.setYears(filme.getYears());
+        filmeVO.setRated(filme.getRated());
+        filmeVO.setReleased(filme.getReleased());
+        filmeVO.setRuntime(filme.getRuntime());
+        filmeVO.setGenre(filme.getGenre());
+        filmeVO.setDirector(filme.getDirector());
+        filmeVO.setWriter(filme.getWriter());
+        filmeVO.setActors(filme.getActors());
+        filmeVO.setPlot(filme.getPlot());
+        filmeVO.setLanguage(filme.getLanguage());
+        filmeVO.setCountry(filme.getCountry());
+        filmeVO.setAwards(filme.getAwards());
+        filmeVO.setPoster(filme.getPoster());
         return filmeVO;
     }
 }
