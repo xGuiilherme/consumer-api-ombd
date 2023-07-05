@@ -17,15 +17,15 @@ Nesta implementação utilizamos alguns dos verbos HTTP abaixo para fazer essa r
 
 ## 🔗 Endpoints
 
-| Method | Route           | Description                | Body required |
-| ------ | --------------- | -------------------------- | ------------- |
-| GET    | `/filme`        | Obter todos os filmes              | false |
-| GET    | `/omdb/{tema}`  | Obter um titulo específico do filme| false |
-| GET    | `/filme/{id}`   | Obter um ID específico do filme    | false |
-| POST   | `/filme`        | Salva um filme no Banco de Dados   | true  |
-#
+| Method | Route          | Description                         | Body required |
+|--------|----------------|-------------------------------------|---------------|
+| GET    | `/filme`       | Obter todos os filmes               | false         |
+| GET    | `/omdb/{tema}` | Obter um titulo específico do filme | false         |
+| GET    | `/filme/{id}`  | Obter um ID específico do filme     | false         |
+| POST   | `/filme/`      | Salva um filme no Banco de Dados    | true          |
+| DELETE | `/filme/{id}`  | Deleta um filme por ID específico   | false         |
 ## Exemplo URL
 
 - localhost:8080/filme/omdb/{tema}
-#
+
 Para ter o acesso a essa API que foi utilizada para fazer essa requisição [clique aqui](https://omdbapi.com).

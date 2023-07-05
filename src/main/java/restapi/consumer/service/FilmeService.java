@@ -16,6 +16,7 @@ public class FilmeService {
 
     @Value("${imdb.apikey}")
     String apiKey;
+
     private final FilmeWebClient filmeWebClient;
     private final FilmeRepository filmeRepository;
     private final FilmeConverter filmeConverter;
@@ -24,13 +25,17 @@ public class FilmeService {
         return filmeWebClient.getFilme(tema, apiKey);
     }
 
+    public Filme getById(Long id) {
+        return filmeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Filme not found."));
+    }
+
     public Filme save(FilmeDTO filmeDTO) {
         Filme filme = filmeConverter.converteParaFilme(filmeDTO);
         return filmeRepository.save(filme);
     }
 
-    public Filme getById(Long id) {
-        return filmeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Filme no found."));
+    public void delete(Long id) {
+        filmeRepository.findById(id);
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import restapi.consumer.convertFilme.FilmeConverter;
 import restapi.consumer.dto.FilmeDTO;
+import restapi.consumer.exception.SavedFilmeException;
+import restapi.consumer.exception.ThemeNoFoundException;
 import restapi.consumer.service.FilmeService;
 import restapi.consumer.vo.FilmeOMDB;
 import restapi.consumer.vo.FilmeVO;
@@ -31,21 +33,7 @@ public class FilmeController {
             return ResponseEntity.status(HttpStatus.OK).body(filmeOMDB);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PostMapping
-    public ResponseEntity<FilmeVO> savedFilme(@RequestBody FilmeDTO filmeDTO) {
-        try {
-            FilmeVO filmeVO = filmeConverter.converteParaFilmeVO(filmeService.save(filmeDTO));
-
-            addHateaos(filmeVO);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(filmeVO);
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new ThemeNoFoundException();
         }
     }
 
@@ -61,6 +49,25 @@ public class FilmeController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<FilmeVO> savedFilme(@RequestBody FilmeDTO filmeDTO) {
+        try {
+            FilmeVO filmeVO = filmeConverter.converteParaFilmeVO(filmeService.save(filmeDTO));
+            addHateaos(filmeVO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(filmeVO);
+
+        } catch (Exception e) {
+            throw new SavedFilmeException();
+        }
+    }
+
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
+        filmeService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     private void addHateaos(FilmeVO filmeVO) {
