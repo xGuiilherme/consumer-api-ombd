@@ -9,7 +9,7 @@ import restapi.consumer.dto.FilmeDTO;
 import restapi.consumer.exception.SavedFilmeException;
 import restapi.consumer.exception.ThemeNoFoundException;
 import restapi.consumer.service.FilmeService;
-import restapi.consumer.vo.FilmeOMDB;
+import restapi.consumer.vo.FilmeIMDB;
 import restapi.consumer.vo.FilmeVO;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -27,10 +27,10 @@ public class FilmeController {
     FilmeConverter filmeConverter;
 
     @GetMapping(path = "/omdb/{tema}")
-    public ResponseEntity<FilmeOMDB> getFilme(@PathVariable String tema) {
+    public ResponseEntity<FilmeIMDB> getFilme(@PathVariable String tema) {
         try {
-            FilmeOMDB filmeOMDB = filmeService.getFilme(tema);
-            return ResponseEntity.status(HttpStatus.OK).body(filmeOMDB);
+            FilmeIMDB filmeIMDB = filmeService.getFilme(tema);
+            return ResponseEntity.status(HttpStatus.OK).body(filmeIMDB);
 
         } catch (Exception e) {
             throw new ThemeNoFoundException();

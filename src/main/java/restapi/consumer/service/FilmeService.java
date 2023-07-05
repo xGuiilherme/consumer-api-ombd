@@ -8,7 +8,7 @@ import restapi.consumer.convertFilme.FilmeConverter;
 import restapi.consumer.dto.FilmeDTO;
 import restapi.consumer.entities.Filme;
 import restapi.consumer.repository.FilmeRepository;
-import restapi.consumer.vo.FilmeOMDB;
+import restapi.consumer.vo.FilmeIMDB;
 
 @RequiredArgsConstructor
 @Service
@@ -21,7 +21,7 @@ public class FilmeService {
     private final FilmeRepository filmeRepository;
     private final FilmeConverter filmeConverter;
 
-    public FilmeOMDB getFilme(String tema) {
+    public FilmeIMDB getFilme(String tema) {
         return filmeWebClient.getFilme(tema, apiKey);
     }
 

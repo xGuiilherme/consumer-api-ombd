@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @RequiredArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FilmeOMDB {
+public class FilmeIMDB {
 
     @NotBlank
     @JsonProperty("Title")
